@@ -74,3 +74,10 @@ class Solution:
         return pmt
     # 无法通过"aabaaabaaac", "aabaaac"，说明该函数用的方法是错误的
     # 最后一个pmt是不正确的
+
+
+s = lt.Solution()
+# print(s.cra_pmt('abcab'))
+# print(s.strStr("mississippi", "pi"))
+print(s.strStr("aabaaabaaac", "aabaaac"))
+# print(s.strStr('aaaaba', 'ba'))
