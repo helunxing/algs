@@ -16,10 +16,11 @@ class MinStack:
         if len(self.stack) == 0:
             self.min = x
         else:
+            self.min = self.min_s[-1]
             if x < self.min:
                 self.min = x
         self.stack.append(x)
-        self.min_s.append(min)
+        self.min_s.append(self.min)
 
     def pop(self):
         """
