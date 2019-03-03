@@ -1,4 +1,43 @@
+# 2019年3月3日写，solution1也是正确的。
 class Solution:
+    def reverseWords(self, s: str) -> str:
+        if not s:
+            return ''
+        tmp = ''
+        l = len(s)
+        i = l-1
+        while i >= 0:
+            if s[i] == ' ':
+                while i >= 0 and s[i] == ' ':
+                    i -= 1
+                tmp += ' '
+            else:
+                tmp += s[i]
+                i -= 1
+
+        ans = ''
+        l = len(tmp)
+        i = 0
+        while i < l:
+            ans += ' ' if ans else ''
+            sta = i
+            while i < l and tmp[i] != ' ':
+                i += 1
+            end = i
+            i -= 1
+            while i >= sta and tmp[i] != ' ':
+                ans += tmp[i]
+                i -= 1
+            i = end+1
+
+        return ans
+
+
+s = Solution()
+s.reverseWords('   Hello    world  ')
+
+
+class Solution1:
     def reverseWords(self, s: str) -> str:
         if not s:
             return ''
