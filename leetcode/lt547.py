@@ -4,6 +4,45 @@ class Solution(object):
         :type M: List[List[int]]
         :rtype: int
         """
+        # 02
+        if not M:
+            return 0
+        n = len(M)
+        group = [i for i in range(n)]
+
+        def findr(i):
+            r = i
+            while group[r] != r:
+                r = group[r]
+            while group[i] != r:
+                i, group[i] = group[i], r
+            return r
+
+        def merge(i, j):
+            ri, rj = findr(i), findr(j)
+            if ri != rj:
+                group[ri] = group[rj]
+
+        for i in range(n):
+            for j in range(n):
+                if not M[i][j]:
+                    continue
+                merge(i, j)
+
+        ng = 0
+        for i in range(n):
+            if group[i] == i:
+                ng += 1
+        return ng
+        # 22
+
+
+class Solution2(object):
+    def findCircleNum(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: int
+        """
         n = len(M)
         roots = [i for i in range(n)]
 
@@ -40,7 +79,7 @@ class Solution(object):
 
 
 s = Solution()
-# groups = s.findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]])
+groups = s.findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]])
 roots = s.findCircleNum([
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
     [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],

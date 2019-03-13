@@ -52,6 +52,40 @@ class Solution(object):
         return ans
 
 
+class Solution_recursion_passed(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        self.ans = root
+        self.p = p
+        self.q = q
+
+        self.find(root)
+
+        return self.ans
+
+    def find(self, curr):
+        if curr == None:
+            return False
+
+        left = self.find(curr.left)
+        right = self.find(curr.right)
+
+        if curr.val == self.p.val or curr.val == self.q.val:
+            if left or right:
+                self.ans = curr
+            return True
+        else:
+            if left and right:
+                self.ans = curr
+
+        return left or right
+
+
 s = Solution()
 
 
