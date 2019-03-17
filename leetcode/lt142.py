@@ -7,6 +7,23 @@ class ListNode(object):
         self.next = None
 
 
+class Solution1903(object):
+    def detectCycle(self, head):
+        fast = slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                break
+        if not fast or not fast.next:
+            return None
+        fast = head
+        while fast != slow:
+            slow = slow.next
+            fast = fast.next
+        return fast
+
+
 class Solution(object):
     def detectCycle(self, head):
         """

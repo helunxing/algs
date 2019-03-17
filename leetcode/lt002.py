@@ -5,6 +5,32 @@ class ListNode(object):
         self.next = None
 
 
+class Solution1903:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        # 51
+        dummy = ListNode(0)
+        curr = dummy
+        car, pos = 0, 0
+
+        while l1 and l2:
+            car, pos = divmod(car+l1.val+l2.val, 10)
+            curr.next = ListNode(pos)
+            curr, l1, l2 = curr.next, l1.next, l2.next
+
+        if l1 or l2:
+            rema = l1 if l1 else l2
+            while rema:
+                car, pos = divmod(car+rema.val, 10)
+                curr.next = ListNode(pos)
+                curr, rema = curr.next, rema.next
+
+        if car:
+            curr.next = ListNode(car)
+
+        return dummy
+        # 12
+
+
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
         """
@@ -33,7 +59,7 @@ class Solution(object):
         return ans.next
 
 
-s = Solution()
+# s = Solution1903()
 
 # l1 = ListNode(2)
 # l1.next = ListNode(4)
@@ -41,11 +67,16 @@ s = Solution()
 # l2 = ListNode(5)
 # l2.next = ListNode(6)
 # l2.next.next = ListNode(4)
+# ans = s.addTwoNumbers(l1, l2)
+# pass
 
 # l1 = ListNode(0)
 # l2 = ListNode(1)
 # l2.next = ListNode(2)
+# ans = s.addTwoNumbers(l1, l2)
+# pass
 
-l1 = ListNode(5)
-l2 = ListNode(5)
-s.addTwoNumbers(l1, l2)
+# l1 = ListNode(5)
+# l2 = ListNode(5)
+# ans = s.addTwoNumbers(l1, l2)
+# pass

@@ -1,8 +1,38 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+# Definition for singly-linked list.
+# class ListNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
+
+
+class Solution1903:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        def merge(h1, h2):
+            dummy = curr = ListNode(0)
+            while h1 and h2:
+                if h1.val > h2.val:
+                    curr.next, h2 = h2, h2.next
+                    curr = curr.next
+                else:
+                    curr.next, h1 = h1, h1.next
+                    curr = curr.next
+            if h1 or h2:
+                rem = h1 if h1 else h2
+                curr.next = rem
+            return dummy.next
+
+        while len(lists) > 1:
+            tmp = merge(lists[0], lists[1])
+            del lists[0]
+            del lists[0]
+            lists.append(tmp)
+        return lists[0] if lists else []
 
 
 class Solution(object):
