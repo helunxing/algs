@@ -5,6 +5,46 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+class Solution1903(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        # 10
+        parent = {root: None}
+        stack = []
+        curr = root
+        while p not in parent or q not in parent:
+            if curr.left:
+                parent[curr.left] = curr
+                stack.append(curr.left)
+            if curr.right:
+                parent[curr.right] = curr
+                stack.append(curr.right)
+            curr = stack[-1]
+            del stack[-1]
+        curr = p
+        path = set()
+        while curr:
+            path.add(curr)
+            curr = parent[curr]
+        curr = q
+        while curr not in path:
+            curr = parent[curr]
+        return curr
+        # 18
+
 
 class Solution(object):
     def lowestCommonAncestor(self, root, p, q):
@@ -86,15 +126,15 @@ class Solution_recursion_passed(object):
         return left or right
 
 
-s = Solution()
+s = Solution1903()
 
 
-root = TreeNode(3)
-root.left = TreeNode(5)
-root.right = TreeNode(1)
-root.right.left = TreeNode(0)
-root.right.right = TreeNode(8)
-print(s.lowestCommonAncestor(root, TreeNode(5), TreeNode(1)).val)
+# root = TreeNode(3)
+# root.left = TreeNode(5)
+# root.right = TreeNode(1)
+# root.right.left = TreeNode(0)
+# root.right.right = TreeNode(8)
+# print(s.lowestCommonAncestor(root, TreeNode(5), TreeNode(1)).val)
 
 # root = TreeNode(1)
 # root.left = TreeNode(2)
@@ -110,7 +150,7 @@ root.right.left = TreeNode(0)
 root.right.right = TreeNode(8)
 root.left.right.left = TreeNode(7)
 root.left.right.right = TreeNode(4)
-print(s.lowestCommonAncestor(root, TreeNode(5), TreeNode(1)).val)
+print(s.lowestCommonAncestor(root, root.left, root.left.right.right).val)
 
 
 #   left    right|
