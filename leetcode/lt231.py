@@ -1,10 +1,17 @@
+class Solution1903:
+    def isPowerOfTwo(self, n: int) -> bool:
+        if n <= 0:
+            return False
+        return not n & (n-1)
+
+
 class Solution(object):
     def isPowerOfTwo(self, n):
         """
         :type n: int
         :rtype: bool
         """
-        if n < 0:
+        if n <= 0:
             return False
         n &= n-1
         return not n
