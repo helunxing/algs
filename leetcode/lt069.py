@@ -1,3 +1,26 @@
+class Solution1903:
+    def mySqrt(self, x: int) -> int:
+        if not x:
+            return 0
+        l, r = 1, x
+        while True:
+            m = l+(r-l)//2
+            if m > x//m:
+                r = m-1
+            else:
+                if m+1 > x//(m+1):
+                    return m
+                else:
+                    l = m+1
+
+
+s = Solution1903()
+print(s.mySqrt(8))
+print(s.mySqrt(4))
+print(s.mySqrt(5))
+print(s.mySqrt(1))
+
+
 class Solution(object):
     def mySqrt(self, x):
         """
