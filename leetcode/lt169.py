@@ -13,6 +13,11 @@ class Solution:
                 max = key
         return max
 
-
-s = Solution()
-s.majorityElement([1, 2, 3, 4])
+    def majorityElement_1903(self, nums: List[int]) -> int:
+        cnt = 0
+        candi = None
+        for i in nums:
+            if not cnt:
+                candi = i
+            cnt += 1 if candi == i else -1
+        return candi

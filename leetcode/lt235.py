@@ -7,6 +7,20 @@ class TreeNode(object):
 
 
 class Solution(object):
+    def lowestCommonAncestor_1903(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if p.val > q.val:
+            return self.lowestCommonAncestor(root, q, p)
+        if not root:
+            return root
+        elif p.val == root.val or root.val == q.val \
+                or p.val <= root.val <= q.val:
+            return root
+        else:
+            if p.val > root.val:
+                return self.lowestCommonAncestor(root.right, p, q)
+            else:
+                return self.lowestCommonAncestor(root.left, p, q)
+
     def lowestCommonAncestor(self, root, p, q):
         """
         :type root: TreeNode
@@ -35,7 +49,7 @@ class Solution(object):
                 poi_q = poi_q.left
             elif poi_q.val < q.val:
                 poi_q = poi_q.right
-                
+
         ans = root
         for i in range(min(len(queue_p), len(queue_q))):
             if queue_p[i].val == queue_q[i].val:

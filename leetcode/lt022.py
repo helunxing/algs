@@ -1,4 +1,18 @@
 class Solution(object):
+    def generateParenthesis_1903(self, n: int) -> List[str]:
+        self.ans = []
+
+        def helper(s, l, r):
+            if l == r == 0:
+                self.ans.append(s)
+            if l > 0:
+                helper(s+'(', l-1, r)
+            if r > l:
+                helper(s+')', l, r-1)
+
+        helper('', n, n)
+        return self.ans
+
     def generateParenthesis(self, n):
         """
         :type n: int
