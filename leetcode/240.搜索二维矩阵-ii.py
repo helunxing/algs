@@ -65,3 +65,31 @@ class Solution:
                 return True
             end = l
         return False
+
+
+class Solution_1904:
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        if not matrix:
+            return False
+        m, n = len(matrix), len(matrix[0])
+        if not n:
+            return False
+        for i in range(m):
+            if matrix[i][0] > target:
+                break
+            l, r = 0, n-1
+            while l <= r:
+                m = l+(r-l)//2
+                if matrix[i][m] < target:
+                    l = m+1
+                elif target < matrix[i][m]:
+                    r = m-1
+                else:
+                    return True
+
+        return False
