@@ -1,6 +1,11 @@
 {
     "python.pythonPath": "C:\\forProgramming\\Python37\\python.exe",
     "editor.minimap.enabled": false,
+    "editor.rulers": [
+
+        80,120
+        
+        ],
     "workbench.colorCustomizations": {
         "editor.selectionHighlightBorder": "#000000",
         "editor.selectionHighlightBackground": "#FFFFFF",
@@ -27,7 +32,7 @@
         "menu.background": "#ffffff",
         "debugToolBar.background": "#ffffff",
         "editorLineNumber.foreground": "#000000",
-        "editorRuler.foreground": "#ff0000",
+        // "editorRuler.foreground": "#000000",
         "editorWidget.background": "#ffffff",
         "editorHoverWidget.statusBarBackground": "#ff0000",
         "editor.findMatchHighlightBackground": "#ffffff",
