@@ -1,11 +1,13 @@
 {
+    "go.testFlags": [
+        "-v"
+    ],
     "python.pythonPath": "C:\\forProgramming\\Python37\\python.exe",
     "editor.minimap.enabled": false,
     "editor.rulers": [
-
-        80,120
-        
-        ],
+        80,
+        120
+    ],
     "workbench.colorCustomizations": {
         "editor.selectionHighlightBorder": "#000000",
         "editor.selectionHighlightBackground": "#FFFFFF",
