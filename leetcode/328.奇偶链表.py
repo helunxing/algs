@@ -12,7 +12,7 @@ class ListNode:
         self.next = None
 
 
-class Solution:
+class Solution0:
     def oddEvenList(self, head: ListNode) -> ListNode:
         o_d, e_d = ListNode(0), ListNode(0)
         curr = head
@@ -33,11 +33,40 @@ class Solution:
         return o_d.next
 
 
-dummy = ListNode(0)
-head = dummy
-l = [1, 2, 3, 4, 5]
-for i in l:
-    head.next = ListNode(i)
-    head = head.next
-s = Solution()
-s.oddEvenList(dummy.next)
+# dummy = ListNode(0)
+# head = dummy
+# l = [1, 2, 3, 4, 5]
+# for i in l:
+#     head.next = ListNode(i)
+#     head = head.next
+# s = Solution()
+# s.oddEvenList(dummy.next)
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+
+        odd, eve = ListNode(0), ListNode(0)
+        o, e = odd, eve
+        curr = head
+        l_o = True
+
+        while curr:
+            if l_o:
+                o.next = curr
+                o = o.next
+            else:
+                e.next = curr
+                e = e.next
+            curr = curr.next
+            l_o = not l_o
+
+        e.next = None
+        o.next = eve.next
+        return odd.next

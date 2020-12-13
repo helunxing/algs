@@ -33,7 +33,7 @@
 #
 
 
-class Solution:
+class Solution0:
     def isAnagram(self, s: str, t: str) -> bool:
         d = [0]*26
         for i in s:
@@ -46,3 +46,16 @@ class Solution:
         for i in d:
             ans &= not i
         return ans
+
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        cnts = [0]*26
+        for c in s:
+            cnts[ord(c)-ord('a')] += 1
+        for c in t:
+            cnts[ord(c)-ord('a')] -= 1
+        for i in cnts:
+            if i:
+                return False
+        return True

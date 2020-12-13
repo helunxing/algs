@@ -1,11 +1,14 @@
 # Definition for singly-linked list.
+from typing import List
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
 
 
-class Solution:
+class Solution0:
     def sortList(self, head: ListNode) -> ListNode:
         if not head:
             return head
@@ -43,3 +46,40 @@ for i in nodes:
     fast = fast.next
 s = Solution()
 ans = s.sortList(dummy.next)
+
+
+class Solution:
+    def sortList(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+
+        last = slow = fast = head
+
+        while fast:
+            last = slow
+            fast = fast.next
+            slow = slow.next
+            fast = fast.next if fast else fast
+
+        l1 = head
+        l2 = last.next
+        last.next = None
+
+        return self.merge(self.sortList(l1), self.sortList(l2))
+
+    def merge(self, l1, l2):
+        dummy = ListNode(0)
+        curr = dummy
+        while l1 and l2:
+            if l1.val > l2.val:
+                curr.next = l2
+                l2 = l2.next
+            else:
+                curr.next = l1
+                l1 = l1.next
+            curr = curr.next
+        if l1:
+            curr.next = l1
+        if l2:
+            curr.next = l2
+        return dummy.next

@@ -92,7 +92,6 @@ class Solution_give_up:
                     tmp = findtmp(covered[i:], now[j:])
 
             return nl
-            # TODO
             # 仅剩此功能未完成时1：00
 
         # 遍历待处理的高度
