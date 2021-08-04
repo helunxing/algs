@@ -67,3 +67,7 @@ class Solution:
                 d.popleft()
             maxL.append(nums[d[0]])
         return maxL[k-1:]
+
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        

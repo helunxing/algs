@@ -1,12 +1,26 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        ans = collections.defaultdict(list)
+import collections
+
+# class Solution(object):
+#     def groupAnagrams(self, strs):
+#         ans = collections.defaultdict(list)
+#         for s in strs:
+#             count = [0]*26
+#             for l in s:
+#                 count[ord(l)-ord('a')] += 1
+#             ans[tuple(count)].append(s)
+#         return ans.values()
+
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        mp = collections.defaultdict(list)
         for s in strs:
-            count = [0]*26
-            for l in s:
-                count[ord(l)-ord('a')] += 1
-            ans[tuple(count)].append(s)
-        return ans.values()
+            k=''.join(sorted(s))
+            mp[k].append(s)
+        return list(mp.values())
+
+
+
 
 # 以上官方答案
 # 以下自己写的

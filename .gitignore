@@ -1,1 +1,3 @@
 .DS_Store
+.vscode/
+leetcode/__pycache__/
